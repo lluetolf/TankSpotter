@@ -1,5 +1,3 @@
-import { StringifyOptions } from 'querystring'
-
 export class SpotReport {
     id: number
     created: Date
