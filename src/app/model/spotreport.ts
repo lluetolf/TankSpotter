@@ -6,7 +6,7 @@ export class SpotReport {
     status: string
     recipient: string
     observerLocation: Coordinates
-    spotLocation: Coordinates
+    spotLocation: any
     spotTime: Date
     tankType: string
 }

@@ -14,4 +14,8 @@ export class SpotReportService {
   getReports(): Observable<SpotReport[]> {
     return this.client.get<SpotReport[]>("/api/reports");
   }
+
+  addSpotReport(report: SpotReport): Observable<SpotReport> {
+    return this.client.post<SpotReport>("/api/reports", report);
+  }
 }

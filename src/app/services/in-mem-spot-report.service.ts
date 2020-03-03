@@ -23,9 +23,9 @@ export class InMemSpotReportService implements InMemoryDbService {
                 accuracy: 0
             },
             spotLocation: {
-                latitude: 0,
-                longitude: 0,
-                accuracy: 0
+                latitude: 46.755425,
+                longitude: 7.608383,
+                accuracy: 1
             },
             spotTime: "2020-03-03T09:22:39+00:00",
             tankType: "leo2"
