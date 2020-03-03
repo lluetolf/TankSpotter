@@ -1,0 +1,34 @@
+<h1 mat-dialog-title>Add new tank report</h1>
+
+<div mat-dialog-content>
+    <div class="example-container">
+        
+        <mat-form-field>
+            <input matInput placeholder="Tank" [(ngModel)]="report.tankType" required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Spotted at" [(ngModel)]="report.spotTime">
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+      <mat-form-field>
+            <input matInput placeholder="Latitude" [(ngModel)]="report.spotLocation.latitude" required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Longitude" [(ngModel)]="report.spotLocation.longitude" required>
+        </mat-form-field>
+
+        <button mat-button (click)="showMap()">from map</button>
+
+    </div>     
+
+    <google-map *ngIf="isMapVisible" (mapClick)="onMapClicked($event)"> </google-map>
+
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="dismiss()">Cancel</button>
+  <button mat-button cdkFocusInitial (click)="save()">Save</button>
+</div>
