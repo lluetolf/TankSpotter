@@ -1,42 +1,62 @@
 [
     {
         "id": 1,
-        "created": "2020-03-03T09:22:39+00:00",
+        "created": { "$date":"2020-03-03T09:22:39+00:00" },,
         "sensor": "Keller",
         "sender": "Keller",
         "status": "Open",
         "recipient": "All",
         "observerLocation": {
-            "latitude": 0,
-            "longitude": 0,
-            "accuracy": 0
+            "latitude": 0.0,
+            "longitude": 0.0,
+            "accuracy": 0.0
         },
         "spotLocation":{
-            "latitude": 0,
-            "longitude": 0,
-            "accuracy": 0
+            "latitude": 0.0,
+            "longitude": 0.0,
+            "accuracy": 0.0
         },
-        "spotTime": "2020-03-03T09:22:39+00:00",
+        "spotTime": { "$date":"2020-03-03T09:22:39+00:00" },
         "tankType": "leo2"
     },
     {
         "id": 2,
-        "created": "2020-03-03T09:22:39+00:00",
+        "created": { "$date":"2020-03-03T09:22:39+00:00" },,
         "sensor": "Luetolf",
         "sender": "Luetolf",
         "status": "Open",
         "recipient": "All",
         "observerLocation": {
-            "latitude": 0,
-            "longitude": 0,
-            "accuracy": 0
+            "latitude": 0.0,
+            "longitude": 0.0,
+            "accuracy": 0.0
         },
         "spotLocation":{
-            "latitude": 0,
-            "longitude": 0,
-            "accuracy": 0
+            "latitude": 0.0,
+            "longitude": 0.0,
+            "accuracy": 0.0
         },
-        "spotTime": "2020-03-03T09:22:39+00:00",
+        "spotTime": { "$date":"2020-03-03T09:22:39+00:00" },,
         "tankType": "cv9030"
     },
+    {
+        "id": 2,
+        "created": { "$date":"2020-03-03T09:22:39+00:00" },,
+        "sensor": "Luetolf",
+        "sender": "Luetolf",
+        "status": "Open",
+        "recipient": "All",
+        "observerLocation": {
+            "latitude": 0.0,
+            "longitude": 0.0,
+            "accuracy": 0.0
+        },
+        "spotLocation":{
+            "latitude": 46.755425,
+            "longitude": 7.608383,
+            "accuracy": 1.0
+        },
+        "spotTime": { "$date":"2020-03-03T09:22:39+00:00" },,
+        "tankType": "cv9030"
+    }
 ]
