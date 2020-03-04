@@ -1,15 +1,34 @@
 <h1 mat-dialog-title>Add new tank report</h1>
 
-<div mat-dialog-content>
+<div mat-dialog-content class="base-container">
     <div class="example-container">
-        
+
         <mat-form-field>
-            <input matInput placeholder="Tank" [(ngModel)]="report.tankType" required>
+            <input matInput placeholder="Tank type" [(ngModel)]="report.tankType" required>
         </mat-form-field>
 
         <mat-form-field>
-            <input matInput [matDatepicker]="picker" placeholder="Spotted at" [(ngModel)]="report.spotTime">
+          <mat-label>Created at</mat-label>
+            <input matInput disabled [(ngModel)]="report.created" required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Spotted at" [(ngModel)]="report.spotTime" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Sensor" [(ngModel)]="report.sensor" required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Status</mat-label>
+          <mat-select matNativeControl required [(ngModel)]="report.status">
+            <mat-option value="Open">Open</mat-option>
+            <mat-option value="Verified">Verified</mat-option>
+            <mat-option value="Gone">Gone</mat-option>
+          </mat-select>
         </mat-form-field>
 
       <mat-form-field>
@@ -22,13 +41,15 @@
 
         <button mat-button (click)="showMap()">from map</button>
 
-    </div>     
+    </div>
 
-    <google-map *ngIf="isMapVisible" (mapClick)="onMapClicked($event)"> </google-map>
+    <div class="example-container" *ngIf="isMapVisible">
+      <google-map (mapClick)="onMapClicked($event)"> </google-map>
+    </div>
 
 </div>
 
 <div mat-dialog-actions>
   <button mat-button (click)="dismiss()">Cancel</button>
-  <button mat-button cdkFocusInitial (click)="save()">Save</button>
+  <button mat-button color="primary" cdkFocusInitial (click)="save()">Save</button>
 </div>

@@ -9,4 +9,9 @@ export class SpotReport {
     spotLocation: any
     spotTime: Date
     tankType: string
+
+    get spotDate(): Date {
+        console.log("spotdate");
+        return new Date(this.spotTime);
+    }
 }
