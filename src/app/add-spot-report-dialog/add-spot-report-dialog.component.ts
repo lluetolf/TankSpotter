@@ -19,6 +19,8 @@ export class AddSpotReportDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.report = new SpotReport();
+    this.report.created = new Date();
+    this.report.spotTime = new Date();
     this.report.spotLocation = { accuracy: 1, longitude: 0, latitude: 0 };
   }
 

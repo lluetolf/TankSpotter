@@ -1,0 +1,13 @@
+.base-container {
+    display: flex;
+    flex-direction: row;
+  }
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .example-container, .base-container > * {
+    width: 100%;
+  }

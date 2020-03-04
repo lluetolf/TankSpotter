@@ -13,7 +13,7 @@ import { AddSpotReportDialogComponent } from '../add-spot-report-dialog/add-spot
 })
 export class SpotReportListComponent implements OnInit {
 
-  public displayedColumns: string[] = ["id", "tankType", "spotLocation", "action" ];
+  public displayedColumns: string[] = ["id", "tankType", "spotTime", "spotLocation", "status", "action" ];
   public spotReports: MatTableDataSource<SpotReport> = new MatTableDataSource();
 
   public mapCenter: google.maps.LatLngLiteral;
@@ -23,6 +23,7 @@ export class SpotReportListComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.getReports().subscribe(data => {
+      console.log(data);
       this.spotReports.data = data;
 
       if (data && data.length > 0) {
@@ -65,10 +66,13 @@ export class SpotReportListComponent implements OnInit {
 
   public addReport(): void {
     const dialogRef = this.dialog.open(AddSpotReportDialogComponent, {
-      width: '600px'
+      width: '800px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      if (!result) {
+        return;
+      }
       console.log('The dialog was closed: ' + result);
       this.spotReports.data = this.spotReports.data.concat(result)  ;
       this.setMarkers(this.spotReports.data);

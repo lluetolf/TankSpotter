@@ -17,6 +17,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatDatepickerModule } from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -50,7 +52,7 @@ const appRoutes: Routes = [
   imports: [
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      { enableTracing: false } // <-- debugging purposes only
     ),
     BrowserModule,
     AppRoutingModule,
@@ -68,9 +70,10 @@ const appRoutes: Routes = [
     MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
     HttpClientModule,
     GoogleMapsModule,
-    HttpClientInMemoryWebApiModule.forRoot(InMemSpotReportService),
+    //HttpClientInMemoryWebApiModule.forRoot(InMemSpotReportService),
   ],
   providers: [],
   bootstrap: [AppComponent]

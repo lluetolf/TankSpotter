@@ -8,14 +8,22 @@ import { SpotReport } from '../model/spotreport';
 })
 export class SpotReportService {
 
+  private serviceUrl: string = "https://tankspotterapi.herokuapp.com/spottings";
+
   constructor(private client: HttpClient) {
   }
 
   getReports(): Observable<SpotReport[]> {
-    return this.client.get<SpotReport[]>("/api/reports");
+    const headers = { headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT'
+     }
+    };
+    return this.client.get<SpotReport[]>(this.serviceUrl, headers);
   }
 
   addSpotReport(report: SpotReport): Observable<SpotReport> {
-    return this.client.post<SpotReport>("/api/reports", report);
+    return this.client.post<SpotReport>(this.serviceUrl
+    , report);
   }
 }
