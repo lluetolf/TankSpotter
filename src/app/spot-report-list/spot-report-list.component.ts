@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SpotReport } from '../model/spotreport';
 import { MatTableDataSource } from '@angular/material/table';
+import {MatPaginator} from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 
 import { SpotReportService } from '../services/spot-report.service';
@@ -19,9 +20,15 @@ export class SpotReportListComponent implements OnInit {
   public mapCenter: google.maps.LatLngLiteral;
   public markers: any[];
 
+  @ViewChild(MatPaginator, {static: true})
+  public paginator: MatPaginator;
+
   constructor(private service: SpotReportService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
+
+    this.spotReports.paginator = this.paginator;
+
     this.service.getReports().subscribe(data => {
       console.log(data);
       this.spotReports.data = data;
