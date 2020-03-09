@@ -32,8 +32,20 @@ export class AddSpotReportDialogComponent implements OnInit {
     this.isMapVisible = false;
   }
 
+  useCurrentLocation() {
+    if (!navigator.geolocation) {
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(location => {
+      this.report.spotLocation.latitude = location.coords.latitude;
+      this.report.spotLocation.longitude = location.coords.longitude;
+      this.report.spotLocation.accuracy = location.coords.accuracy;
+    });
+  }
+
   save() {
-    
+
     this.service.addSpotReport(this.report).subscribe(result => {
       console.log('Create:' + JSON.stringify(result));
 
