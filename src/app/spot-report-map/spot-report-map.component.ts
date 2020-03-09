@@ -30,9 +30,6 @@ export class SpotReportMapComponent implements OnInit {
             color: this.getColor(r.status),
             text: r.sender + ': ' + r.tankType,
           },
-          symbol: {
-            fillColor: this.getColor(r.status)
-          },
           title: r.tankType,
           options: { }
         };
