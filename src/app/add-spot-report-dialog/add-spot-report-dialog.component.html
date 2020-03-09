@@ -39,6 +39,7 @@
             <input matInput placeholder="Longitude" [(ngModel)]="report.spotLocation.longitude" required>
         </mat-form-field>
 
+        <button mat-button (click)="useCurrentLocation()">current location</button>
         <button mat-button (click)="showMap()">from map</button>
 
     </div>
