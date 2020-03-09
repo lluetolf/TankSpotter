@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { SpotReport } from '../model/spotreport';
 import { MatTableDataSource } from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
@@ -6,16 +6,17 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { SpotReportService } from '../services/spot-report.service';
 import { AddSpotReportDialogComponent } from '../add-spot-report-dialog/add-spot-report-dialog.component';
+import { SpotReportTableDataSource } from '../spot-report-table-data-source';
 
 @Component({
   selector: 'app-spot-report-list',
   templateUrl: './spot-report-list.component.html',
   styleUrls: ['./spot-report-list.component.scss']
 })
-export class SpotReportListComponent implements OnInit {
+export class SpotReportListComponent implements OnInit, AfterViewInit {
 
   public displayedColumns: string[] = ["id", "tankType", "spotTime", "spotLocation", "status", "action" ];
-  public spotReports: MatTableDataSource<SpotReport> = new MatTableDataSource();
+  public spotReports: SpotReportTableDataSource;
 
   public mapCenter: google.maps.LatLngLiteral;
   public markers: any[];
@@ -27,21 +28,16 @@ export class SpotReportListComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.spotReports.paginator = this.paginator;
+    this.spotReports = new SpotReportTableDataSource(this.service);
+    this.spotReports.loadSpottings(0, 5);
+  }
 
-    this.service.getReports().subscribe(data => {
-      console.log(data);
-      this.spotReports.data = data;
-
-      if (data && data.length > 0) {
-        this.mapCenter = {
-          lat: data[0].spotLocation.latitude,
-          lng: data[0].spotLocation.longitude
-        };
-      }
-
-      this.setMarkers(data);
+  ngAfterViewInit() {
+    this.paginator.page.subscribe(() => {
+      this.spotReports.loadSpottings(this.paginator.pageIndex, this.paginator.pageSize);
     });
+
+    this.spotReports.data$.subscribe(d => this.setMarkers(d));
   }
 
   private setMarkers(data: SpotReport[]): void {
@@ -80,10 +76,7 @@ export class SpotReportListComponent implements OnInit {
       if (!result) {
         return;
       }
-      console.log('The dialog was closed: ' + result);
-      this.spotReports.data = this.spotReports.data.concat(result)  ;
-      this.setMarkers(this.spotReports.data);
-      this.centerAround(result);
+      this.spotReports.addItem(result);
     });
   }
 

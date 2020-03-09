@@ -19,6 +19,7 @@ import {MatDatepickerModule } from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,8 +33,10 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { InMemSpotReportService } from './services/in-mem-spot-report.service';
 import { AddSpotReportDialogComponent } from './add-spot-report-dialog/add-spot-report-dialog.component';
 import { SelectLocationDialogComponent } from './select-location-dialog/select-location-dialog.component';
+import { SpotReportMapComponent } from './spot-report-map/spot-report-map.component';
 
 const appRoutes: Routes = [
+  { path: 'map', component: SpotReportMapComponent },
   { path: 'reports', component: SpotReportListComponent },
   { path: 'reports/:id', component: SpotReportDetailComponent },
   { path: '**', component: PageNotFoundComponent }
@@ -47,7 +50,8 @@ const appRoutes: Routes = [
     PageNotFoundComponent,
     SpotReportDetailComponent,
     AddSpotReportDialogComponent,
-    SelectLocationDialogComponent
+    SelectLocationDialogComponent,
+    SpotReportMapComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -72,6 +76,7 @@ const appRoutes: Routes = [
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatProgressSpinnerModule,
     HttpClientModule,
     GoogleMapsModule,
     //HttpClientInMemoryWebApiModule.forRoot(InMemSpotReportService),
