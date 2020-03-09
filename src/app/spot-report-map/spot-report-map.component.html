@@ -1,0 +1,13 @@
+<div class="mat-elevation-z8">
+  <button (click)="research()" mat-button>Search this area</button>
+  <google-map [center]="mapCenter" width="100%" >
+    <map-marker
+      *ngFor="let marker of markers | async"
+      [position]="marker.position"
+      [label]="marker.label"
+      [symbol]="marker.symbol"
+      [title]="marker.title"
+      [options]="marker.options">
+      </map-marker>
+  </google-map>
+</div>
